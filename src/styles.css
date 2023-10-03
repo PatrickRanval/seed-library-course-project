@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --ssDarkGreen: #2C8157;
+  --ssMidGreen: #3B9C6C;
+  --ssLightGreen: #4AB27E;
+  --ssGold: #E0BC65;
+  --trayPurp: #8580E4;
+  --subBrown: #C76824;
+  --seedGreen: #349C5F;
+  --fertBlue: #42ADD0;
+  --appOrange: #EC742F;
+  --bedBrown: #C76824;
+  --taskGreen: #5EB097;
+  --taskGold: #E4AC5B;
+  --bedDarkBrown: #BA5421;
+  --calendarBlue: #42ADD0;
+}
