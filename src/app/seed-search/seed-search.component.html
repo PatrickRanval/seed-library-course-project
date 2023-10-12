@@ -1,0 +1,11 @@
+<h1>Search Global Seeds:</h1>
+
+<div class="jumbotron" *ngFor="let seed of displayedSeeds">
+  <p>{{ seed.name }}</p>
+</div>
+
+<div class="input-group col-7">
+  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon" />
+  <button type="button" class="btn btn-seedstory">Search</button>
+</div>

@@ -1,34 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+
 import { SeedShelfComponent } from './seed-shelf/seed-shelf.component';
-import { SeedLibraryComponent } from './seed-library/seed-library.component';
-import { SeedListComponent } from './seed-shelf/seed-list/seed-list.component';
-import { SeedDetailsFrontComponent } from './seed-shelf/seed-details-front/seed-details-front.component';
-import { SeedDetailsBackComponent } from './seed-shelf/seed-details-back/seed-details-back.component';
-import { SeedResultsComponent } from './seed-library/seed-results/seed-results.component';
-import { SeedSearchComponent } from './seed-library/seed-search/seed-search.component';
-import { NavigationComponent } from './shared/navigation/navigation.component';
-import { SeedsComponent } from './shared/seeds/seeds.component';
-import { SeedDetailViewerComponent } from './shared/seed-detail-viewer/seed-detail-viewer.component';
+
+import { SeedSearchComponent } from './seed-search/seed-search.component';
+
+import { SeedDetailViewerComponent } from './seed-detail-viewer/seed-detail-viewer.component';
+
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SeedShelfComponent,
-    SeedLibraryComponent,
-    SeedListComponent,
-    SeedDetailsFrontComponent,
-    SeedDetailsBackComponent,
-    SeedResultsComponent,
     SeedSearchComponent,
-    NavigationComponent,
-    SeedsComponent,
-    SeedDetailViewerComponent
+    SeedDetailViewerComponent,
+    NavbarComponent,
+
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
