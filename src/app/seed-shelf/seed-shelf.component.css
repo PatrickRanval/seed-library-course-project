@@ -1,5 +1,3 @@
-* {
-  border:0;
-  margin:0;
-  background-color: var(--ssGold);
+div {
+  background-color: var(--appGreen);
 }

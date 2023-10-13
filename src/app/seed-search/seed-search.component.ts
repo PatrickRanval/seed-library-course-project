@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, EventEmitter } from '@angular/core';
 import { SeedApiService } from '../shared/services/seed-api.service';
 import { Seed } from '../shared/models/seed.model';
+import { SeedService } from '../shared/services/seed.service';
 
 @Component({
   selector: 'app-seed-search',
@@ -8,16 +9,18 @@ import { Seed } from '../shared/models/seed.model';
   styleUrls: ['./seed-search.component.css']
 })
 
-
+@Injectable()
 export class SeedSearchComponent implements OnInit {
   seedResults: Seed[] = [];
+  searchResultsChanged = new EventEmitter<Seed[]>();
 
   id: number;
   berryName: string;
   naturalGiftPower: string;
   imgURL: string;
 
-  constructor(private seedApiService: SeedApiService) {}
+  constructor(private seedApiService: SeedApiService,
+    private seedService: SeedService) {}
 
   ngOnInit() {
     this.fetchSeed(this.generateBerryID());
@@ -45,6 +48,22 @@ export class SeedSearchComponent implements OnInit {
     this.seedResults.push(seed);
   });
 }
+
+  removeSeed(idx:number) {
+    if (idx !== -1) {
+      this.seedResults.splice(idx, 1)
+      this.searchResultsChanged.emit(this.seedResults.slice())
+    }
+  }
+
+  onAddSeed(seed: Seed){
+    const idx = this.seedResults.findIndex((s) => s.type === seed.type);
+    this.removeSeed(idx);
+    this.fetchSeed(this.generateBerryID());
+    return this.seedService.addSeedToShelf(seed);
+
+
+  }
 
 // berryToSeed(){
   //   new Seed(

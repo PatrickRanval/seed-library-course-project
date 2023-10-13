@@ -1,9 +1,28 @@
-<div class="container-fluid">
+<div class="container">
   <h1>SeedShelf Works</h1>
-    <div class="jumbotron">
-      <h2>Name</h2>
-      <h3>Variety</h3>
+  <div class="card mb-4 shadow-sm" *ngFor="let seed of seedCollection">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-8">
+          <h2 class="card-title" style="font-size: 1.5rem;">{{seed.type}} {{seed.variety}}</h2>
+          <p class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">
+            {{seed.isOrganic ? "Certified Organic" : "Not Organic"}}
+          </p>
+          <p class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">{{seed.origin}}</p>
+          <p class="card-text" style="font-size: 1rem;">Debug only ID: {{seed.debugField}}</p>
+        </div>
+        <div class="col-4">
+          <img src="{{seed.imgURL}}" alt="{{seed.type}}" class="img-fluid" style="height:100%; align-self:auto;">
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+        class="btn btn-seedstory float-right"
+        style="width: 30%;"
+        (click)="onRemoveSeed(i)">
+          Remove From Shelf
+        </button>
+      </div>
     </div>
-  <button class="btn btn-success">Here's a Button</button>
+  </div>
 </div>
-

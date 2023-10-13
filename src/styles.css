@@ -15,6 +15,7 @@
   --calendarBlue: #42ADD0;
 
   --appManilla: #ecd7a6;
+  --appGreen: #c4f9a6;
 
   background-color: var(--appManilla);
 }
@@ -44,8 +45,13 @@
   opacity: .5;
 }
 
+.form-control {
+  background-color: beige;
+}
+
 .form-control:focus {
     outline: none;
     border-color: var(--ssLightGreen);
     box-shadow: 0 0 0 3px var(--ssMidGreen);
 }
+
