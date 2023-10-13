@@ -5,11 +5,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SeedApiService {
-  private baseUrl = 'https://pokeapi.co/api/v2/';
+  private baseUrl = 'https://pokeapi.co/api/v2/berry/';
 
   constructor(private http: HttpClient) {}
 
-  getSeeds() {
-    return this.http.get(`${this.baseUrl}berry`)
+  getSeeds(id:string) {
+    return this.http.get(`${this.baseUrl}${id}/`)
   }
+
+
+
 }

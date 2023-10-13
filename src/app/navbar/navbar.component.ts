@@ -6,9 +6,5 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  @Output() selectedView = new EventEmitter<string>();
 
-  onSelect(viewToDisplay:string) {
-    this.selectedView.emit(viewToDisplay)
-  }
 }
