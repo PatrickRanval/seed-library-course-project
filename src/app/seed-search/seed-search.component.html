@@ -12,7 +12,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <div class="card mb-4 shadow-sm" *ngFor="let seed of seedResults">
+      <div class="card mb-4 shadow-sm" *ngFor="let seed of seedResults; let i = index">
         <div class="card-body">
           <div class="row">
             <div class="col-8">
@@ -33,6 +33,9 @@
             style="width: 30%;"
             (click)="onAddSeed(this.seed)">
               Add to Collection
+            </button>
+            <button class="btn btn-seedstory float-left" style="width: 30%;" (click)="onDisplayFromSearch(i)">
+              View in Detail
             </button>
           </div>
         </div>

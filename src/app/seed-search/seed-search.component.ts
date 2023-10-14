@@ -22,11 +22,12 @@ export class SeedSearchComponent implements OnInit {
   constructor(private seedApiService: SeedApiService,
     private seedService: SeedService) {}
 
+  specificSeed:Seed = this.seedService.returnDefault();
+
   ngOnInit() {
     this.fetchSeed(this.generateBerryID());
     this.fetchSeed(this.generateBerryID());
     this.fetchSeed(this.generateBerryID());
-    console.log(this.seedResults);
   }
 
   generateBerryID(){
@@ -63,6 +64,10 @@ export class SeedSearchComponent implements OnInit {
     return this.seedService.addSeedToShelf(seed);
 
 
+  }
+
+  onDisplayFromSearch(i){
+    this.seedService.displayFromSearch(this.seedResults, i)
   }
 
 // berryToSeed(){

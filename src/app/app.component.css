@@ -3,3 +3,11 @@
   padding: 0;
 }
 
+.col-5 {
+  background-color: var(--appGreen);
+}
+
+.col-7{
+  background-color: var(--seedGreen);
+}
+

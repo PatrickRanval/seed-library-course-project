@@ -1,4 +1,18 @@
 <div class="container-fluid">
   <h1>Seed Detail Viewer</h1>
-  <p>Uhhhh</p>
+  <div class="container my-4">
+    <div class="card">
+      <img src="{{displayedSeed.imgURL}}" class="card-img-top" alt="{{displayedSeed.type}}" style="object-fit: contain; height: 300px;">
+      <div class="card-body">
+        <h5 class="card-title">{{displayedSeed.type}} {{displayedSeed.variety}}</h5>
+        <p class="card-text">Organic: {{displayedSeed.isOrganic ? 'Certified Organic' : 'Not Organic'}}</p>
+        <p class="card-text">Origin: {{displayedSeed.origin}}</p>
+        <p class="card-text">Debug only ID: {{displayedSeed.debugField}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Amount: {{displayedSeed.amount}}</li>
+        <li class="list-group-item">Date Added: {{displayedSeed.dateAdded}}</li>
+      </ul>
+    </div>
+  </div>
 </div>

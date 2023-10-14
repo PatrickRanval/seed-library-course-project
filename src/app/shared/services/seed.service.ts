@@ -5,6 +5,8 @@ import { Seed } from '../models/seed.model';
   providedIn: 'root'
 })
 export class SeedService {
+  seedSelected = new EventEmitter<Seed>();
+  seedShelfChanged = new EventEmitter<Seed[]>();
 
   private mySeeds:Seed[] = [
     new Seed(
@@ -19,15 +21,30 @@ export class SeedService {
     )
   ]
 
-  seedSelected = new EventEmitter<Seed>();
-  seedShelfChanged = new EventEmitter<Seed[]>();
+    public defaultSeed:Seed = new Seed(
+      'Example Seed',
+      'Piccolino',
+      true,
+      "Johnny's Selected Seeds",
+      'https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_18_4.a.png',
+      66,
+      200,
+      '3/12/1989'
+    )
+
+    returnDefault() {
+      return this.defaultSeed;
+    }
+
 
   getSeedShelf() {
     return this.mySeeds.slice()
   }
 
-  getSpecificSeed(id:number) {
-    return this.mySeeds[id];
+  getSpecificSeed(id: number): Seed {
+    const selectedSeed = this.mySeeds[id];
+    this.seedSelected.emit(selectedSeed);
+    return selectedSeed;
   }
 
   addSeedToShelf (seed:Seed) {
@@ -39,6 +56,12 @@ export class SeedService {
       this.mySeeds.splice(idx, 1)
       this.seedShelfChanged.emit(this.mySeeds.slice())
     }
+  }
+
+  displayFromSearch(Arr:Seed[], i:number) {
+    let selectedSeed = Arr[i];
+    this.seedSelected.emit(selectedSeed);
+    return selectedSeed;
   }
 
 }

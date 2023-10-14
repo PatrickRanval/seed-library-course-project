@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>SeedShelf Works</h1>
-  <div class="card mb-4 shadow-sm" *ngFor="let seed of seedCollection">
+  <h1>My SeedShelf</h1>
+  <div class="card mb-4 shadow-sm" *ngFor="let seed of seedCollection; let i = index">
     <div class="card-body">
       <div class="row">
         <div class="col-8">
@@ -21,6 +21,12 @@
         style="width: 30%;"
         (click)="onRemoveSeed(i)">
           Remove From Shelf
+        </button>
+        <button
+        class="btn btn-seedstory float-left"
+        style="width: 30%;"
+         (click)="onGetSpecificSeed(i)">
+          View in Detail
         </button>
       </div>
     </div>
