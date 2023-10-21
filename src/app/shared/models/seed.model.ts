@@ -1,5 +1,6 @@
 export class Seed {
   constructor(
+  public uid: number,  // This is the porblem category
   public type: string, // Poke "name"
   public variety: string, // Poke "natural_gift_type.name"
   public isOrganic: boolean,  // Poke is "natural_gift_power" >50?
@@ -16,5 +17,7 @@ export class Seed {
 
 
   ){};
+
+
 }
 

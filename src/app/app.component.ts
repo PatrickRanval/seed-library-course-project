@@ -9,9 +9,4 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent {
   title = 'seed-library-course-project';
-  displayedView = 'shelf';
-
-  onDisplay(view:string) {
-    this.displayedView = view;
-  }
 }

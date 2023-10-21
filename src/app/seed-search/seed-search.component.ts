@@ -44,7 +44,7 @@ export class SeedSearchComponent implements OnInit {
     let fixedID:string = (data.id>9) ? `${data.id}` : `0${data.id}`;
     this.imgURL = `https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_${fixedID}_4.a.png`
 
-    const seed = new Seed(this.berryName, this.naturalGiftPower, true, 'High Mowing Seeds', this.imgURL, this.id)
+    const seed = new Seed(this.id, this.berryName, this.naturalGiftPower, true, 'High Mowing Seeds', this.imgURL, this.id)
 
     this.seedResults.push(seed);
   });

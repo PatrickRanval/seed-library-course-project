@@ -1,6 +1,8 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component } from '@angular/core';
 import { Seed } from '../shared/models/seed.model';
 import { SeedService } from '../shared/services/seed.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-seed-shelf',
@@ -8,22 +10,37 @@ import { SeedService } from '../shared/services/seed.service';
   styleUrls: ['./seed-shelf.component.css']
 })
 export class SeedShelfComponent {
-  specificSeed:Seed;
-  seedCollection:Seed[] = this.seedService.getSeedShelf();
+  seedCollection: Seed[];
+  seedSelected: Seed;
+  private seedShelfSubscription: Subscription;
+  private seedSelectedSubscription: Subscription;
 
-  constructor(private seedService:SeedService) {}
-
-  ngOnInit() {
-    this.seedService.seedShelfChanged.subscribe((seeds: Seed[]) => this.seedCollection = seeds)
-    this.seedService.seedSelected.subscribe((seedDisplayed: Seed) => this.specificSeed = seedDisplayed);
+  constructor(private seedService: SeedService, private router: Router, private route: ActivatedRoute) {
   }
 
-  onRemoveSeed(idx){
+  ngOnInit() {
+    this.seedCollection = this.seedService.getSeedShelf();
+      this.seedShelfSubscription = this.seedService.seedShelf.subscribe((collection) => {
+      this.seedCollection = collection;
+    });
+
+    this.seedSelectedSubscription = this.seedService.seedSelected.subscribe((seed) => {
+      this.seedSelected = seed;
+    });
+  }
+
+  ngOnDestroy() {
+    // Make sure to unsubscribe to prevent memory leaks
+    this.seedShelfSubscription.unsubscribe();
+    this.seedSelectedSubscription.unsubscribe();
+  }
+
+  onRemoveSeed(idx) {
     this.seedService.removeSeedFromShelf(idx);
   }
 
   onGetSpecificSeed(i) {
-    this.specificSeed = this.seedService.getSpecificSeed(i);
+    this.seedService.displayFromSearch(this.seedCollection, i);  //Not sure this should be necessary
+    this.router.navigate([i], { relativeTo: this.route });
   }
-
 }
