@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit, EventEmitter } from '@angular/core';
 import { SeedApiService } from '../shared/services/seed-api.service';
 import { Seed } from '../shared/models/seed.model';
 import { SeedService } from '../shared/services/seed.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-seed-search',
@@ -20,7 +21,7 @@ export class SeedSearchComponent implements OnInit {
   imgURL: string;
 
   constructor(private seedApiService: SeedApiService,
-    private seedService: SeedService) {}
+    private seedService: SeedService, private router:Router, private route:ActivatedRoute) {}
 
   specificSeed:Seed = this.seedService.returnDefault();
 
@@ -68,27 +69,6 @@ export class SeedSearchComponent implements OnInit {
 
   onDisplayFromSearch(i){
     this.seedService.displayFromSearch(this.seedResults, i)
+    this.router.navigate([this.id], { relativeTo: this.route });
   }
-
-// berryToSeed(){
-  //   new Seed(
-  //   this.berryName,
-  //   this.naturalGiftPower,
-  //   true,
-  //   "Johnny's Selected Seeds",
-  //   "https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_01_4.a.png")
-  //   }
 }
-
-// export class SeedSearchComponent implements OnInit {
-//   jsonData: string; // Store the JSON response as a string
-
-//   constructor(private seedApiService: SeedApiService) {}
-
-//   ngOnInit() {
-//     this.seedApiService.getSeeds().subscribe((data: any) => {
-//       // Convert the JSON response to a string and store it
-//       this.jsonData = JSON.stringify(data, null, 2); // Use 'null, 2' for pretty-printing
-//     });
-//   }
-// }

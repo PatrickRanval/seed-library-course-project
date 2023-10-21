@@ -1,0 +1,29 @@
+<p>seed-from-search works!</p>
+<div class="container">
+  <h2>Detailed Seed Info:</h2>
+  <p>Just literally anything</p>
+
+  <div class="card mb-4 shadow-sm" *ngIf="specificSeed; else noSeedInfo">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-8">
+          <h2 class="card-title" style="font-size: 1.5rem;">{{specificSeed.type}} {{specificSeed.variety}}</h2>
+          <p class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">
+            {{specificSeed.isOrganic ? "Certified Organic" : "Not Organic"}}
+          </p>
+          <p class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">{{specificSeed.origin}}</p>
+          <p class="card-text" style="font-size: 1rem;">Debug only ID: {{specificSeed.debugField}}</p>
+        </div>
+        <div class="col-4">
+          <img src="{{specificSeed.imgURL}}" alt="{{specificSeed.type}}" class="img-fluid"
+            style="height:100%; align-self:auto;">
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-seedstory float-right" style="width: 30%;">
+          No Action Attached
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

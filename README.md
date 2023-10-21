@@ -2,10 +2,6 @@
 
 ## TODO:
 
-    Configure the Routes correctly:
-    	{ path: 'shelf', component: SeedShelfComponent, children: [
-    		{ path: ':id', component: SeedOnShelfComponent}]}
-
     For Search:
     	{ path: 'search', component: SeedSearchComponent, children: [
     		{ path: ':id', component: SeedFromSearchComponent}]}
