@@ -9,7 +9,7 @@ export class SeedApiService {
 
   constructor(private http: HttpClient) {}
 
-  getSeeds(id:string) {
+  getSeeds(id:number) {
     return this.http.get(`${this.baseUrl}${id}/`)
   }
 

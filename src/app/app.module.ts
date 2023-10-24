@@ -17,7 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ShelfHomeComponent } from './seed-shelf/shelf-home/shelf-home.component';
 import { SeedOnShelfComponent } from './seed-shelf/seed-on-shelf/seed-on-shelf.component';
-import { SeedFromSearchComponent } from './seed-shelf/seed-from-search/seed-from-search.component';
+import { SeedFromSearchComponent } from './seed-search/seed-from-search/seed-from-search.component';
 
 
 @NgModule({

@@ -2,19 +2,16 @@
 
 ## TODO:
 
-    For Search:
-    	{ path: 'search', component: SeedSearchComponent, children: [
-    		{ path: ':id', component: SeedFromSearchComponent}]}
+Add a SeedToShelf Component as a Modal, implement as Angular Form
 
+Add a EditSeedOnShelfComponent as a Modal, implement as Angular Form
 
-    In those revised templates for <app-seed-search> and <app-seed-shelf> add <router-outlet></router-outlet> that displays the child 		components, which is the detail view.
-
-    Probably set IDs to respond to a subscription via params.
-
-    Probably go ahead and make the Edit Seed On Shelf Component as a child route from the shelf component.
-    	 { path: ':id/edit', component: EditSeedOnShelfComponent}
+Make the Edit Seed On Shelf Component as a child route from the shelf component.
+{ path: ':id/edit', component: EditSeedOnShelfComponent}
 
 Modify SeedFromSearchComponent to display detailed information
+
+Update CSS for SeedFromSearch and SeedonShelf Components
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
 
