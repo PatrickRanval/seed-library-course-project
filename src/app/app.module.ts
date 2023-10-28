@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ShelfHomeComponent } from './seed-shelf/shelf-home/shelf-home.component';
 import { SeedOnShelfComponent } from './seed-shelf/seed-on-shelf/seed-on-shelf.component';
 import { SeedFromSearchComponent } from './seed-search/seed-from-search/seed-from-search.component';
+import { EditSeedOnShelfComponent } from './seed-shelf/seed-on-shelf/edit-seed-on-shelf/edit-seed-on-shelf.component';
 
 
 @NgModule({
@@ -31,14 +33,16 @@ import { SeedFromSearchComponent } from './seed-search/seed-from-search/seed-fro
     LoginComponent,
     ShelfHomeComponent,
     SeedOnShelfComponent,
-    SeedFromSearchComponent
+    SeedFromSearchComponent,
+    EditSeedOnShelfComponent
 
 
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

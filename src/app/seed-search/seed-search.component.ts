@@ -32,13 +32,11 @@ export class SeedSearchComponent implements OnInit {
       return Math.ceil(Math.random()*43);
       }
 
-
   populateSeed() {
   this.seedService.fetchSeed(this.generateBerryID()).subscribe((seed: Seed) => {
     this.seedResults.push(seed);
   });
 }
-
 
   removeSeed(idx:number) {
     if (idx !== -1) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Seed } from '../models/seed.model';
-import { Subject, Observable, map } from 'rxjs';
+import { Subject, Observable, map, BehaviorSubject } from 'rxjs';
 import { SeedApiService } from './seed-api.service';
 
 @Injectable({
@@ -47,8 +47,14 @@ export class SeedService {
     addSeedToShelf (seed:Seed) {
       this.mySeeds.push(seed);
       this.seedShelf.next([...this.mySeeds]);
-
     }
+
+    editSeedOnShelf(editedSeed:Seed, id) {
+      this.mySeeds.splice(id, 1, editedSeed);
+      this.seedShelf.next([...this.mySeeds]);
+      this.seedSelected.next(editedSeed);
+    }
+
     removeSeedFromShelf (idx:number) {
       if (idx !== -1) {
         this.mySeeds.splice(idx, 1)
@@ -61,8 +67,13 @@ export class SeedService {
     return [...this.mySeeds];
   }
 
-  getSpecificSeed(idx: number) {        //this method sucks i think
+  getSpecificSeed(idx: number) {        //this method sucks i think  //tryna use
     return this.mySeeds.slice()[idx]
+  }
+
+  setSelectedSeedById(id){
+    let selectedSeed = this.mySeeds.slice()[id];
+    this.seedSelected.next(selectedSeed);
   }
 
   setSelectedSeed(seed: Seed) {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Seed } from 'src/app/shared/models/seed.model';
 import { SeedService } from 'src/app/shared/services/seed.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,21 +10,37 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   templateUrl: './seed-on-shelf.component.html',
   styleUrls: ['./seed-on-shelf.component.css']
 })
-export class SeedOnShelfComponent implements OnInit {
-    id:number;
-    specificSeed: Seed;
+export class SeedOnShelfComponent implements OnInit, OnDestroy {
+  id: number;
+  specificSeed: Seed = null; // Initialize with a default value or null
+  private seedSelectedSubscription: Subscription;
 
-    constructor(
-      private route: ActivatedRoute,
-      private seedService: SeedService,
-      private router:Router
-    ) {}
+  constructor(
+    private route: ActivatedRoute,
+    private seedService: SeedService,
+    private router: Router,
+  ) {}
 
-    ngOnInit() {
+
+  ngOnInit() {
+    this.seedSelectedSubscription = this.seedService.seedSelected.subscribe((seed) => {
+      this.specificSeed = seed;
+    });
     this.route.paramMap.subscribe((params: ParamMap) => {
-        this.id = +params.get('id');
-            this.specificSeed = this.seedService.getSpecificSeed(this.id);
-    })
+      this.id = +params.get('id');
+    });
+    this.seedService.setSelectedSeedById(this.id)
+  }
+
+  ngOnDestroy() {
+    if (this.seedSelectedSubscription) {
+      this.seedSelectedSubscription.unsubscribe();
+    }
+  }
+
+    onEditSeed() {
+      // this.router.navigate(['/shelf', id, 'edit']);  //A working absolute path
+       this.router.navigate(['edit'], {relativeTo: this.route});
     }
 
     onRemoveSeed(id) {

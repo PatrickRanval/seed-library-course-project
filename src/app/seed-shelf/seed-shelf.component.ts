@@ -30,7 +30,7 @@ export class SeedShelfComponent {
   }
 
   ngOnDestroy() {
-    // Make sure to unsubscribe to prevent memory leaks
+
     this.seedShelfSubscription.unsubscribe();
     this.seedSelectedSubscription.unsubscribe();
   }
@@ -40,7 +40,10 @@ export class SeedShelfComponent {
   }
 
   onGetSpecificSeed(i) {
-    this.seedService.displayFromSearch(this.seedCollection, i);  //Not sure this should be necessary
+    this.seedService.setSelectedSeedById(i);
     this.router.navigate([i], { relativeTo: this.route });
+
+    // this.seedService.getSpecificSeed(i);
+    // this.seedService.displayFromSearch(this.seedCollection, i);  //I think the problem is here.
   }
 }

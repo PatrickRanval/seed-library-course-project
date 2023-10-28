@@ -1,0 +1,51 @@
+<div class="container" *ngIf="this.specificSeed">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()" >
+    <div class="form-group">
+      <label for="uid">UID</label>
+      <input type="text" id="uid" formControlName="uid" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input type="text" id="type" formControlName="type" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="variety">Variety</label>
+      <input type="text" id="variety" formControlName="variety" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="isOrganic">Organic Status</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="isOrganic" id="organicRadio" formControlName="isOrganic"
+          value="true" checked>
+        <label class="form-check-label" for="organicRadio">Organic</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="isOrganic" id="notOrganicRadio" formControlName="isOrganic"
+          value="false">
+        <label class="form-check-label" for="notOrganicRadio">Not Organic</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="origin">Origin</label>
+      <input type="text" id="origin" formControlName="origin" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="imgURL">Image URL</label>
+      <input type="text" id="imgURL" formControlName="imgURL" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="debugField">Debug Field</label>
+      <input type="text" id="debugField" formControlName="debugField" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" formControlName="amount" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="dateAdded">Date Added</label>
+      <input type="text" id="dateAdded" formControlName="dateAdded" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
