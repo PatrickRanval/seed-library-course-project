@@ -41,6 +41,7 @@ export class SeedOnShelfComponent implements OnInit, OnDestroy {
     onEditSeed() {
       // this.router.navigate(['/shelf', id, 'edit']);  //A working absolute path
        this.router.navigate(['edit'], {relativeTo: this.route});
+       //Call a build form method?
     }
 
     onRemoveSeed(id) {

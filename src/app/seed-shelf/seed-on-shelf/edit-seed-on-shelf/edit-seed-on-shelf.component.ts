@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Seed } from 'src/app/shared/models/seed.model';
 import { SeedService } from 'src/app/shared/services/seed.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Form, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-seed-on-shelf',
@@ -10,11 +11,12 @@ import { Form, ReactiveFormsModule, FormGroup, FormControl } from '@angular/form
   styleUrls: ['./edit-seed-on-shelf.component.css']
 })
 
-export class EditSeedOnShelfComponent {
+export class EditSeedOnShelfComponent implements OnInit {
     id:number;
     specificSeed: Seed;
     specificSeedString: string;
     editForm:FormGroup;
+    myParamMap:Subscription;
 
     constructor(
       private route: ActivatedRoute,
@@ -23,11 +25,17 @@ export class EditSeedOnShelfComponent {
     ) {}
 
     ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.myParamMap = this.route.paramMap.subscribe((params: ParamMap) => {
         this.id = +params.get('id');
-            this.specificSeed = this.seedService.getSpecificSeed(this.id);
+        this.specificSeed = this.seedService.getSpecificSeed(this.id);
     })
     this.buildForm();
+  }
+
+    ngOnDestroy(){
+      if (this.myParamMap) {
+        this.myParamMap.unsubscribe();
+      }
     }
 
   buildForm() {
@@ -68,6 +76,7 @@ onSubmit() {
       // Handle form validation errors or display a message to the user.
     }
 }
+
 
 }
 
