@@ -17,7 +17,7 @@ const appRoutes: Routes = [
       {path: 'edit', component: EditSeedOnShelfComponent}]}
   ]},
   { path: 'search', component: SeedSearchComponent, children: [
-    { path: ':id', component: SeedFromSearchComponent}
+    { path: ':searchId', component: SeedFromSearchComponent}  //being explicit about use of :id
   ] },
 
 ];

@@ -1,4 +1,7 @@
-<div class="container" *ngIf="this.specificSeed">
+<div class="container">
+<button type="button" class="btn btn-danger" (click)="debugId()">Call for id</button>
+</div>
+<div class="container" *ngIf="this.specificSeed !== undefined">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()" >
     <div class="form-group">
       <label for="uid">UID</label>

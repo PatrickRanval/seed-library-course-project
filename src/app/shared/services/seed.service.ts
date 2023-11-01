@@ -7,7 +7,7 @@ import { SeedApiService } from './seed-api.service';
   providedIn: 'root'
 })
 export class SeedService {
-  seedSelected = new Subject<Seed>();
+  seedSelected = new BehaviorSubject<Seed>(null);
   seedShelf = new Subject<Seed[]>();
 
   private mySeeds:Seed[] = [];
@@ -47,6 +47,7 @@ export class SeedService {
     addSeedToShelf (seed:Seed) {
       this.mySeeds.push(seed);
       this.seedShelf.next([...this.mySeeds]);
+      console.log(this.mySeeds);
     }
 
     editSeedOnShelf(editedSeed:Seed, id) {

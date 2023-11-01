@@ -17,9 +17,9 @@ export class SeedFromSearchComponent implements OnInit {
     private seedService: SeedService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {            //We touched this method trying to fix shelf
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id');
+      this.id = +params.get('searchId');
       this.seedService.fetchSeed(this.id).subscribe((seed: Seed) => {
         this.specificSeed = seed;
       });

@@ -52,8 +52,8 @@ export class SeedSearchComponent implements OnInit {
     return this.seedService.addSeedToShelf(seed);
   }
 
-  onDisplayFromSearch(id){
-    this.router.navigate([id], { relativeTo: this.route });
+  onDisplayFromSearch(searchId){      //we touched this method trying to fix shelf
+    this.router.navigate([searchId], { relativeTo: this.route });
     };
 }
 
