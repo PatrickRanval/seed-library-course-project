@@ -60,7 +60,8 @@ export class SeedService {
       if (idx !== -1) {
         this.mySeeds.splice(idx, 1)
         this.seedShelf.next([...this.mySeeds]);
-        this.seedSelected.next(this.defaultSeed);
+        this.setSelectedSeedById(idx);
+        // this.seedSelected.next(this.defaultSeed);
       }
     }
 
@@ -68,25 +69,13 @@ export class SeedService {
     return [...this.mySeeds];
   }
 
-  getSpecificSeed(idx: number) {        //this method sucks i think  //tryna use
-    return this.mySeeds.slice()[idx]
-  }
-
-  setSelectedSeedById(id){
+  setSelectedSeedById(id){                          //this method is used a lot
     let selectedSeed = this.mySeeds.slice()[id];
     this.seedSelected.next(selectedSeed);
   }
 
   setSelectedSeed(seed: Seed) {
     this.seedSelected.next(seed);
-  }
-
-
-
-  displayFromSearch(Arr:Seed[], i:number) {     //this method sucks too
-    let selectedSeed = Arr[i];
-    this.seedSelected.next(selectedSeed);
-    return selectedSeed;
   }
 
 }

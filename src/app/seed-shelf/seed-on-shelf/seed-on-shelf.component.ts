@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Seed } from 'src/app/shared/models/seed.model';
 import { SeedService } from 'src/app/shared/services/seed.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -19,19 +19,17 @@ export class SeedOnShelfComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private seedService: SeedService,
     private router: Router,
-    private cd:  ChangeDetectorRef
   ) {}
 
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.id = +params.get('id');
+    });
     this.seedSelectedSubscription = this.seedService.seedSelected.subscribe((seed) => {
       this.specificSeed = seed;
     });
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id');
-      console.log(`In Seed-On-Shelf-Component ` + this.id)
-    });
-    this.seedService.setSelectedSeedById(this.id)
+    this.seedService.setSelectedSeedById(this.id);
   }
 
   ngOnDestroy() {
@@ -41,14 +39,9 @@ export class SeedOnShelfComponent implements OnInit, OnDestroy {
   }
 
   onEditSeed() {
-    this.seedSelectedSubscription.unsubscribe();
+    // this.seedSelectedSubscription.unsubscribe();  //This causes problems
     this.seedService.setSelectedSeedById(this.id);
     this.router.navigate(['edit'], { relativeTo: this.route });
-    // this.router.navigate(['/shelf', this.id, 'edit']);
-    // this.cd.detectChanges();
-    // this.seedSelectedSubscription = this.seedService.seedSelected.subscribe((seed) => {
-    //   this.specificSeed = seed;
-    // });
   }
 
     onRemoveSeed(id) {

@@ -2,12 +2,13 @@
 
 ## TODO:
 
+Add an AddSeedComponent
+
+Implement AddSeedComponent through SeedDetailViewer with ngIf (i think?)
+
 Add a SeedToShelf Component as a Modal, implement as Angular Form
 
 Add a EditSeedOnShelfComponent as a Modal, implement as Angular Form
-
-Make the Edit Seed On Shelf Component as a child route from the shelf component.
-{ path: ':id/edit', component: EditSeedOnShelfComponent}
 
 Modify SeedFromSearchComponent to display detailed information
 

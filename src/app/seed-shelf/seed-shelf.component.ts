@@ -37,13 +37,11 @@ export class SeedShelfComponent {
 
   onRemoveSeed(idx) {
     this.seedService.removeSeedFromShelf(idx);
+    this.router.navigate(['/shelf']);
   }
 
   onGetSpecificSeed(i) {
     this.seedService.setSelectedSeedById(i);
     this.router.navigate([i], { relativeTo: this.route });
-
-    // this.seedService.getSpecificSeed(i);
-    // this.seedService.displayFromSearch(this.seedCollection, i);  //I think the problem is here.
   }
 }

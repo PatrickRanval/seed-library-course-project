@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, OnChanges, OnDestroy, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { Seed } from 'src/app/shared/models/seed.model';
 import { SeedService } from 'src/app/shared/services/seed.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -22,61 +22,25 @@ export class EditSeedOnShelfComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private seedService: SeedService,
-    private cd: ChangeDetectorRef
+    private router:Router
   ) {}
 
   ngOnInit() {
-    this.route.parent.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id');
-      });
-    this.seedService.setSelectedSeedById(this.id);
-    console.log(`From OnInit:` + this.id)
-  }
+  this.route.parent.paramMap.subscribe((params: ParamMap) => {
+    this.id = +params.get('id');
+  });
 
-    debugId() {
-    this.id = +this.route.parent.snapshot.paramMap.get('id');
-    console.log(this.route);
+  this.seedSubscription = this.seedService.seedSelected.subscribe((selectedSeed: Seed) => {
+    this.specificSeed = selectedSeed;
+    this.buildForm();
+  });
 
-    console.log(`From DebugMethod:` + this.id)
-    }
-  // ngOnChange() {
-  // this.id = +this.route.snapshot.paramMap.get('id');
-  //   this.seedService.setSelectedSeedById(this.id);
-  //   console.log(`From Changes:` + this.id)
-  //   this.seedSubscription = this.seedService.seedSelected.subscribe((selectedSeed: Seed) => {
-  //     this.specificSeed = selectedSeed;
-  //   });
-  // }
-
-// ngOnInit() {
-//   this.id = +this.route.snapshot.paramMap.get('id');
-//     this.seedService.setSelectedSeedById(this.id);
-
-//   console.log(this.id);  //This is so annoying. This should not be 0, but it is logging to zero. Maybe relating to conflicting subscriptions?
-//   this.seedSubscription = this.seedService.seedSelected.subscribe((selectedSeed: Seed) => {
-//     this.specificSeed = selectedSeed;
-//     this.buildForm();
-//   });
-// }
-
-//   ngAfterViewInit() {
-//   this.myParamMap = this.route.paramMap.subscribe((params: ParamMap) => {
-//     this.id = +params.get('id');
-//   });
-//   this.seedService.setSelectedSeedById(this.id);
-//   console.log(this.id);
-//   this.seedSubscription = this.seedService.seedSelected.subscribe((selectedSeed: Seed) => {
-//     this.specificSeed = selectedSeed;
-//     this.buildForm();
-//   });
-// }
+  this.seedService.setSelectedSeedById(this.id);
+}
 
   ngOnDestroy() {
-    // this.myParamMap.unsubscribe();
-    // this.seedSubscription.unsubscribe();
+    this.seedSubscription.unsubscribe();
   }
-
-
 
 buildForm() {
   if (this.specificSeed) {
@@ -105,17 +69,14 @@ onSubmit() {
         this.editForm.value.debugField,
         this.editForm.value.amount,
         this.editForm.value.dateAdded
-      );
-    this.seedService.editSeedOnShelf(editedSeed, this.id);
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id');
-      this.specificSeed = this.seedService.getSpecificSeed(this.id);
-      this.cd.detectChanges(); // Manually trigger change detection
-    });
-    console.log('Edited Seed:', editedSeed);
-  } else {
-    // Handle form validation errors
-  }
+        );
+        this.seedService.editSeedOnShelf(editedSeed, this.id);
+        this.seedService.setSelectedSeedById(this.id);  //emits the updated seed
+        this.router.navigate(['/shelf', this.id]);
+      } else {
+        return;
+      // Handle form validation errors
+    }
 }
 }
 
