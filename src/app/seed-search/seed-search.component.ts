@@ -46,7 +46,7 @@ export class SeedSearchComponent implements OnInit {
   }
 
   onAddSeed(seed: Seed){
-    const idx = this.seedResults.findIndex((s) => s.type === seed.type);
+    const idx = this.seedResults.findIndex((s) => s.genus === seed.genus);
     this.removeSeed(idx);
     this.populateSeed();
     return this.seedService.addSeedToShelf(seed);

@@ -14,14 +14,11 @@ export class SeedService {
 
   public defaultSeed:Seed = new Seed(
     0,
-    'Example Seed',
-    'Piccolino',
-    true,
-    "Johnny's Selected Seeds",
-    'https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_17_4.a.png',
-    66,
-    200,
-    '3/12/1989'
+    'Cucurbita',
+    'moschata',
+    'Upper Ground Sweet Potato',
+    ['Winter Squash'],
+    'https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_17_4.a.png'
     )
 
     constructor(private seedApiService: SeedApiService) { }
@@ -29,12 +26,17 @@ export class SeedService {
     fetchSeed(berryID: number): Observable<Seed> {
     return this.seedApiService.getSeeds(berryID).pipe(
       map((data: any) => {
-        let id = data.id;
-        let berryName = data.name;
-        let naturalGiftPower = data.natural_gift_type.name;
-        let fixedID: string = (data.id > 9) ? `${data.id}` : `0${data.id}`;
-        let imgURL = `https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_${fixedID}_4.a.png`;
-        return new Seed(id, berryName, naturalGiftPower, true, 'High Mowing Seeds', imgURL, id);
+        let refinedID;
+        if (data.id <= 9) { refinedID = '0' + data.id.toString() } else {
+          refinedID = data.id.toString();
+        }
+        return new Seed(
+          data.id,
+          data.name,
+          data.natural_gift_type.name,
+          data.name,
+          [data.name],
+          `https://www.pokencyclopedia.info/sprites/misc/berry-trees_3/tree_3_${refinedID}_4.a.png`)
       })
     );
   }
