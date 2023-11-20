@@ -1,6 +1,31 @@
 <div class="container" *ngIf="specificSeed !== undefined">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+<div class="container">
     <button type="submit" class="btn btn-success">Submit</button>
+
+    <button type="button" class="btn btn-seedstory float-right mr-3" (click)="toggleStory()">Add a Story</button>
+
+    <button type="button" class="btn btn-seedstory float-right mr-3" (click)="toggleAdditionalTaxonomy()">Add an Instance</button>
+
+
+    <button type="button" class="btn btn-seedstory float-right mr-3" (click)="toggleAdditionalTaxonomy()">Toggle Taxonomy</button>
+
+    <hr>
+</div>
+
+   <div *ngIf="addStory">
+      <div class="form-group">
+          <label for="storyTags">Story Tags</label>
+          <input type="text" id="storyTags" formControlName="storyTags" class="form-control">
+      </div>
+
+      <div class="form-group">
+          <label for="storyText">Story Text</label>
+          <input type="text" id="storyText" formControlName="storyText" class="form-control">
+      </div>
+
+   </div>
 
     <div class="form-group">
       <label for="genus">Genus</label>
@@ -26,5 +51,32 @@
       <label for="imgURL">Image URL</label>
       <input type="text" id="imgURL" formControlName="imgURL" class="form-control">
     </div>
+
+<div *ngIf="additionalTaxonomy">
+
+    <div class="form-group">
+      <label for="subspecies">Subspecies</label>
+      <input type="text" id="subspecies" formControlName="subspecies" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="hybridStatus">Hybrid Status</label>
+      <input type="text" id="hybridStatus" formControlName="hybridStatus" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="subvariety">Subvariety</label>
+      <input type="text" id="subvariety" formControlName="subvariety" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="commonNarrow">Common Name (Narrow)</label>
+      <input type="text" id="commonNarrow" formControlName="commonNarrow" class="form-control">
+    </div>
+
+
+</div>
+
+
   </form>
 </div>
