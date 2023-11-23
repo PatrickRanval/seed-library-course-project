@@ -8,6 +8,7 @@ import { SeedDetailViewerComponent } from "./seed-detail-viewer/seed-detail-view
 import { SeedOnShelfComponent } from "./seed-shelf/seed-on-shelf/seed-on-shelf.component";
 import { SeedFromSearchComponent } from "./seed-search/seed-from-search/seed-from-search.component";
 import { EditSeedOnShelfComponent } from "./seed-shelf/seed-on-shelf/edit-seed-on-shelf/edit-seed-on-shelf.component";
+import { AddSeedRecordComponent } from "./add-seed-record/add-seed-record.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/search', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'search', component: SeedSearchComponent, children: [
     { path: ':searchId', component: SeedFromSearchComponent}  //being explicit about use of :id
   ] },
+  { path: 'add', component: AddSeedRecordComponent },
 
 ];
 

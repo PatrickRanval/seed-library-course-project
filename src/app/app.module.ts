@@ -13,13 +13,13 @@ import { SeedSearchComponent } from './seed-search/seed-search.component';
 import { SeedDetailViewerComponent } from './seed-detail-viewer/seed-detail-viewer.component';
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { AddSeedModalComponent } from './add-seed-modal/add-seed-modal.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ShelfHomeComponent } from './seed-shelf/shelf-home/shelf-home.component';
 import { SeedOnShelfComponent } from './seed-shelf/seed-on-shelf/seed-on-shelf.component';
 import { SeedFromSearchComponent } from './seed-search/seed-from-search/seed-from-search.component';
 import { EditSeedOnShelfComponent } from './seed-shelf/seed-on-shelf/edit-seed-on-shelf/edit-seed-on-shelf.component';
+import { AddSeedRecordComponent } from './add-seed-record/add-seed-record.component';
 
 
 @NgModule({
@@ -29,12 +29,12 @@ import { EditSeedOnShelfComponent } from './seed-shelf/seed-on-shelf/edit-seed-o
     SeedSearchComponent,
     SeedDetailViewerComponent,
     NavbarComponent,
-    AddSeedModalComponent,
     LoginComponent,
     ShelfHomeComponent,
     SeedOnShelfComponent,
     SeedFromSearchComponent,
-    EditSeedOnShelfComponent
+    EditSeedOnShelfComponent,
+    AddSeedRecordComponent
 
 
   ],
