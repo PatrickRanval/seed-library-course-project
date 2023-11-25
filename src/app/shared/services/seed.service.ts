@@ -80,4 +80,14 @@ export class SeedService {
     this.seedSelected.next(seed);
   }
 
+
+   //43 is circumventing the max value of our PokeAPI call, we should edit this method later to look at our real Seed API and set values accordingly.
+
+    findHighestUID(): number {
+    if (this.mySeeds.length === 0) {
+      return 43;
+    }
+    return this.mySeeds.reduce((maxUID, seed) => (seed.uid > maxUID ? seed.uid : maxUID), 43);
+  }
+
 }

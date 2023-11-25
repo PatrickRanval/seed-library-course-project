@@ -1,15 +1,12 @@
 <div>
-  <form>
     <div class="container">
-      <!-- Buttons at the bottom right -->
+     <div  style="text-align: center;">
+     <h1>Submit a Seed Record</h1>
+     </div>
 
-      <!-- Buttons for Add a Story, Add an Instance, Toggle Taxonomy -->
-
-      <div class="container">
-        <!-- Two equal-width columns -->
+      <div class="container" [formGroup]="submitSeedForm">
         <div class="row">
         <div class="col-md-4">
-          <!-- Left column -->
 
           <div class="form-group">
             <label for="genus">Genus*</label>
@@ -39,8 +36,6 @@
 
         </div>
         <div class="col-md-4">
-          <!-- Right column with space for image preview -->
-
           <div class="form-group">
             <label for="variety">Variety*</label>
             <input type="text" id="variety" formControlName="variety" class="form-control">
@@ -58,15 +53,21 @@
 
           <div class="form-group">
             <label for="imgURL">Image URL*</label>
-            <input type="text" id="imgURL" formControlName="imgURL" class="form-control">
-            <!-- Add image preview here (e.g., <img id="previewImage" src="#" alt="Image Preview">) -->
+            <input type="text" id="imgURL" formControlName="imgURL" class="form-control" #imgURL>
+          </div>
+          </div>
+
+          <div class="col-md-4">
+            <h3 style="text-align: center;">Image Preview:</h3>
+            <img [src]="imgURL.value" class="img-responsive" style="background-size: contain;">
           </div>
         </div>
-      </div>
+
+
 
       <!-- Additional form fields -->
       <div class="row">
-        <!-- Add form fields in the desired layout -->
+
       </div>
       <hr>
 
@@ -75,24 +76,19 @@
           <button type="button" class="btn btn-seedstory btn-block">Add a Story</button>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-seedstory btn-block">Add an Instance</button>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-seedstory btn-block">Toggle Taxonomy</button>
+          <button type="button" class="btn btn-seedstory btn-block disabled">Add an Instance</button>
         </div>
       </div>
 
       <div class="row justify-content-end">
         <div class="col-md-2">
-          <button type="submit" class="btn btn-success btn-block">Submit</button>
+          <button type="submit" class="btn btn-success btn-block" (click)="onSubmit()">Submit</button>
         </div>
       </div>
 
       <hr>
 
     </div>
-  </div>
-</form>
 </div>
 
 <!-- <div *ngif="false">

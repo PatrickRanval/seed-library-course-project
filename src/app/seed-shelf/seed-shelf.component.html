@@ -6,12 +6,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-8">
-              <h2 class="card-title" style="font-size: 1.5rem;">{{seed.type}} {{seed.variety}}</h2>
+              <h2 class="card-title" style="font-size: 1.5rem;">{{seed.commonBroad}} '{{ seed.variety + (seed.subvariety ? ' ' + seed.subvariety :
+              '') }}' <b>{{ seed.hybridStatus || '' }}</b></h2>
               <p class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">
-                {{seed.isOrganic ? "Certified Organic" : "Not Organic"}}
+                {{seed.commonBroad}}
               </p>
-              <p class="card-subtitle mb-2 text-muted" style="font-size: 1rem;">{{seed.origin}}</p>
-              <p class="card-text" style="font-size: 1rem;">Debug only ID: {{seed.debugField}}</p>
+              <p class="card-text" style="font-size: 1rem;">Debug only ID: {{seed.uid}}</p>
             </div>
             <div class="col-4">
               <img src="{{seed.imgURL}}" alt="{{seed.type}}" class="img-fluid" style="height:100%; align-self:auto;">
